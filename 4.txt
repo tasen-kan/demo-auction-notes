@@ -1,8 +1,10 @@
+docker-compose up -d --scale frontend=3
 
-             /    frontend   80
+
+             /    frontend
 gateway 80
         443
-             \    api -> php-fpm   80
+             \    api -> php-fpm
 
 
 
