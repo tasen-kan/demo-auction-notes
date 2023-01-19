@@ -8,6 +8,76 @@ gateway 80
 
 
 
+DEVELOPMENT
+frontend:
+    build:
+        context: frontend/docker/development/ngiX
+
+        /va r/lib/docker/tmp/xxx/conf.d
+        /var/lib/docker/tmp/xxx/Dockerfile
+        /var/lib/public
+
+PRODUCTION
+frontend:
+    build:
+        context:
+            api/docker/production/nginx
+            api
+
+            /var/lib/docker/tmp/xxx/docker/production/nginx/conf.d
+            /var/lib/docker/tmp/xxx/docker/production/nginx/Dockerfile
+            /var/lib/docker/tmp/xxx/public
+            /var/lib/public
+
+----------------------------------------------------------------------------------------------------------------------------
+
+СБОРКА ОБРАЗОВ НА PROD
+docker build --file api/docker/production/nginx/Dockerfile -tag registry.deworker.pro/auction_nginx:master-1 api (последний параметр это папка)
+docker build --file api/docker/production/nginx/Dockerfile -tag registry.deworker.pro/auction_nginx:master-2 api
+docker build --file api/docker/production/nginx/Dockerfile -tag registry.deworker.pro/auction_nginx:feature-rbac-1 api
+docker push registry.deworker.pro/auction_nginx:master-l
+
+docker login registry.deworker.pro
+Username:
+Password
+
+REGISTRY=localhost IMAGE TAG=0 make build
+
+
+
+
+
+
+
+docker build --file api/docker/production/nginx/Dockerfile --tag $REGISTRY/auction_nginx:$IMAGE_TAG api
+docker push $REGISTRY/auction_nginx:$IMAGE_TAG
+docker push $REGISTRY/auction_nginx:$IMAGE_TAG
+
+
+docker push $REGISTRY/auction_nginx:$IMAGE_TAG
+
+
+* 1 * * cd /root/site && docker-compose rm --rf api-php-cli processor.php
+
+site/ -> site_2/
+
+site_1/
+    docker-compose-production.yml
+        .env
+            COMPOSE_PROJECT_NAME=site
+            REGISTRY=registry.deworker.pro
+            IMAGE_TAG=master-1
+
+site_2/
+    docker-compose-production.yml
+        .env
+            COMPOSE_PROJECT_NAME=site
+            REGISTRY=registry.deworker.pro
+            IMAGE_TAG=master-2
+
+    docker-compose -f docker-compose-production.yml pull
+    docker-compose -f docker-compose-production.yml up --build -d --remove-orphans
+    ln -sr site_${BUILD_NUMBER} site
 
 
 
