@@ -1,0 +1,53 @@
+
+
+Поддомен   https://demo-auction.deworker.pro/
+VPS        https://vds.selectel.ru/
+
+
+
+- Ручная установка виртуальной машины (шпоргалка устаревает)
+- Автоматизация через скрипты
+    install.sh
+        apt update
+        apt install docker-ce
+        wget docker-compose
+        apt install certbot
+        useradd deploy
+        usergroup docker deploy
+
+    update_1.sh
+        cron ....
+
+    update_2.sh
+            cron ....
+
+- Проблема мутабельной инфраструктуры
+Поднять виртуалку первый раз проще, чем ее обновлять и менять софт.
+
+- Установка нужного состояния
+    provision.sh
+        apt update
+        apt install docker-ce
+        wget docker-compose
+        apt install certbot
+        if (! deploy ) {
+            useradd deploy
+            usergroup docker deploy
+        }
+
+- Декларативное описание состояния .yml
+
+    site.yml
+    tasks:
+        - apt_key: https://download.docker.com/linux/debian/gpg
+        - apt_repository: deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable
+        - apt: docker-ce
+        - user:
+            name: deploy
+            groups: [docker]
+
+
+
+
+
+
