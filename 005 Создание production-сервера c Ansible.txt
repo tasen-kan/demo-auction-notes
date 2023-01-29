@@ -39,6 +39,7 @@ VPS        https://vds.selectel.ru/
 - Декларативное описание состояния .yml
 
     site.yml
+
     tasks:
         - apt_key: https://download.docker.com/linux/debian/gpg
         - apt_repository: deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable
@@ -54,11 +55,41 @@ VPS        https://vds.selectel.ru/
     provisioning -i hosts.yml site.yml
 --------------------------------------------------------------------
 - Обзор Ansible
+Нужно установить локально.
+А на сервере достаточно чтобы был установлен Python (Debian/Ubintu по-умолчанию Python установлен).
+
 Система управления серверами
 
 ansible-playbook -i hosts.yml site.yml
+
+provisioning - это управление нашими машинами и инвентарем с помощью таких автоматизированных систем.
+
 --------------------------------------------------------------------
 - Написание плейбука
+
+--------------------------------------------------------------------
+- Запуск на реальной машине
+
+cd /provisioning
+ansible all -m ping -i hosts.yml
+make site
+make authorize
+make docker-login
+    Registry: registry.deworker.pro
+    Username: registry
+    Password: ...
+
+REGISTRY=registry.deworker.pro IMAGE_TAG=master-1 make build
+REGISTRY=registry.deworker.pro IMAGE_TAG=master-1 make push
+H0ST=deploy@95.213.251.60 P0RT=22 REGISTRY=registry.deworker.pro IMAGE_TAG=master-1 BUILD NUMBER=1 make deploy
+
+
+
+
+
+
+
+
 
 
 
