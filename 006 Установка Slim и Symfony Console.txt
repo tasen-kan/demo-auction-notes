@@ -1,0 +1,30 @@
+docker-compose exec api-php-fpm php -v
+docker-compose run --rm api-php-fpm php -v
+
+make init - пересборка образов и перезапуск кода с этими образами
+
+docker-compose run --rm api-php-cli composer init
+docker-compose run --rm api-php-cli composer require slim/slim slim/psr7
+
+docker-compose run --rm api-php-cli composer dump-autoload
+
+PSR-15
+
+Контейнеры с Autowiring
+Контейнеры, которые умеют автоматически парсить конструкторы классов
+и подтягивать туда элементы самостоятельно
+
+php -- --install-dir что значат первые два тире?
+Это значит, что параметры для php закончились и остальное надо игнорировать,
+так как далее пойдут параметры уже для самого скрипта.
+
+
+
+
+
+
+
+
+
+
+
