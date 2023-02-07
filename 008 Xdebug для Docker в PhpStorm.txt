@@ -1,0 +1,32 @@
+PhpStorm
+127.0.0.1:9000
+|
+|                    php-fpm
+|                    xDebug
+|
+192.168.1.15         host.docker.internal
+|
+172.23.0.1
+
+172.23.0.2
+172.23.0.3
+172.23.0.4 xDebug	->	host.docker.internal:9000
+172.23.0.4 xDebug	->	172.23.0.1:9000	/etc/hosts	172.23.0.1	host.docker.internal
+172.23.0.5
+172.23.0.6
+
+
+
+https://github.com/docker-library/php
+
+docker-compose run --rm api-php-cli ip route
+docker-compose exec api-php-fpm ping host.docker.internal
+docker-compose exec api-php-fpm cat /etc/hosts
+
+
+
+
+
+
+
+
