@@ -1,0 +1,16 @@
+docker-compose run --rm api-php-cli php -l bin/app.php
+
+https://github.com/overtrue/phplint
+
+docker-compose run --rm api-php-cli composer cs-fix
+docker-compose run --rm api-php-cli composer cs-check
+
+https://psalm.dev/
+docker-compose run --rm api-php-cli ./vendor/bin/psalm --init src 1
+
+php lint - проверка, что php работает
+php code sniffer - проверка Code Style
+Psaslm - проверка корректность работы типизации
+
+Позволит повысить дисциплину программистов в коде.
+Гарантирует полную однозначность работы для всех программистов.
