@@ -7,6 +7,7 @@ docker-compose run --rm api-php-cli composer cs-check
 
 https://psalm.dev/
 docker-compose run --rm api-php-cli ./vendor/bin/psalm --init src 1
+1 - это уровень строгости, 1 это самый строгий уровень, 8 это самый легкий
 
 php lint - проверка, что php работает
 php code sniffer - проверка Code Style
