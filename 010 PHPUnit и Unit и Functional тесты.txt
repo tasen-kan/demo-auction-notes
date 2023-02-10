@@ -10,6 +10,21 @@ Acceptance tests - Проверяют полностью всё приложен
 Functional tests - Проверяют приложение, контроллеры, например бэк
 Unit tests - Проверяют классы, быстрые
 
+docker-compose run --rm api-php-cli vendor/bin/phpunit --filter=Functional
+docker-compose run --rm api-php-cli vendor/bin/phpunit composer test -- --filter=Functional
+docker-compose run --rm api-php-cli composer test -- --testsuite=functional
+docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=unit --coverage-html var/coverage
+
+
+
+
+
+
+
+
+
+
+
 
 
 
