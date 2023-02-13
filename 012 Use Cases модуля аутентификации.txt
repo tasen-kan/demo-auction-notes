@@ -1,0 +1,55 @@
+CQS - Command Query Segregation
+
+Command - методы, которые что-то модифицируют
+POST, PUT, PATCH
+Чаще всего ничего не возвращают
+
+Query - методы, которые что-то считывают
+GET
+Возвращают результат
+
+useCase - процедура или функция, которая говорит что с этим элементом можно сделать.
+Доменная модель - сущности, сервисы.
+
+Use Case
+    Command
+    Query
+
+
+----------------
+
+Join By Email
+    Request
+    Confirm
+
+Join By Network
+
+Attach Network
+
+Reset Password
+    Request
+    Reset
+
+Change Email
+    Request
+    Confirm
+
+Change Role
+
+----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
