@@ -20,7 +20,11 @@ Use Case
 
 Join By Email
     Request
+        Command
+        Handler
     Confirm
+        Command
+        Handler
 
 Join By Network
 
