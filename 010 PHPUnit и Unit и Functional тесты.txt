@@ -15,7 +15,10 @@ docker-compose run --rm api-php-cli vendor/bin/phpunit composer test -- --filter
 docker-compose run --rm api-php-cli composer test -- --testsuite=functional
 docker-compose run --rm api-php-cli vendor/bin/phpunit --colors=always --testsuite=unit --coverage-html var/coverage
 
+./vendor/bin/phpunit --color
+docker-compose run --rm api-php-cli vendor/bin/phpunit
 
+Параметризованные тесты
 
 
 
