@@ -1,0 +1,5 @@
+DB First
+    DB > Migrations > Code
+
+Code First
+    Code > Migrations > DB
