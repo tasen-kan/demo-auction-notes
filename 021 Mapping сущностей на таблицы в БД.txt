@@ -4,8 +4,8 @@
 
 
 
-
-
+Embedded   - Встроенный
+Embeddable - Встраиваемый
 
 
 
