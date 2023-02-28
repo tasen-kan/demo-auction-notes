@@ -7,10 +7,32 @@
 Embedded   - Встроенный
 Embeddable - Встраиваемый
 
+-----------------------------
+
+users
+id, email,
+
+user_networks
+id, user_id, name, identity
 
 
 
+Неудобство OneToMany связей
+Когда мы работаем с доктриной, то она любую сущность, которая хранится в базе данных рассматривает
+как конкретную отдельную и полноценную сущность. С первичным ключом, со связями и т.д.
 
+
+-----------------------------
+
+Маппинг коллекции значений через сущность-носитель
+
+users
+id, email
+
+user_networks
+id, user_id, network_name, network_identity
+
+UserNetwork(User, Embedded(Network))
 
 
 
