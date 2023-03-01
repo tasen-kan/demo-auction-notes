@@ -1,0 +1,97 @@
+docker-compose run --rm api-php-cli composer app orm:validate-schema
+docker-compose run --rm api-php-cli composer app orm:schema-tool:drop -- --force
+docker-compose run --rm api-php-cli composer app migrations:diff
+docker-compose run --rm api-php-cli composer app migrations:migrate
+
+migrations/
+    0001.sql	CREATE TABLE ...
+    0002.sql	ALTER TABLE ...
+    0003.sql
+    0004.sql
+
+migrate
+
+migrations
+    0001
+    0002
+    0003
+    0004
+
+0001_up.sql     CREATE TABLE ...
+0001_down.sql   DROP TABLE ...
+
+class M20200215124347 extends AbstractMigration
+{
+    public function up(): void
+    {
+        $this->execute('CREATE TABLE users ...')
+    }
+
+    public function down(): void
+    {
+        $this->execute('DROP TABLE users');
+    }
+}
+
+
+php composer.phar require robmorgan/phinx
+vendor/bin/phinx init
+vendor/bin/phinx create MyNewMigration
+
+Неудобство:
+Нужно будет вручную прописывать все колонки и следить за тем
+чтобы они совпадали с маппингом, который написан в наших сущностях.
+
+Транзакции для схемы в PostgreSQL
+
+----------------------------------------------------
+
+Подсказки для кастомных типов данных
+migrations:diff
+
+Когда доктрина делает сравнение двух схем друг с другом у нее могут возникать проблемы с кастомными типами
+данных, которые у нас описаны. Какие именно проблемы?
+Доктрина будет парсить аннотации и увидит, что ожидаемая схема должна быть такая - expected.
+А когда полезет в БД, колонки от туда смотреть какие там есть, то реальная схема БД построиться немного другая.
+
+expected                       real
+    tables:                        tables:
+        auth_users:                    auth_users:
+            columns:	                  columns:
+                id: auth_user_id	           id: uuid              COMMENT auth_user_id
+                email: auth_user_email	       email: string         COMMENT auth_user_email
+                hash: string,null	           hash: string,null
+
+$this->addSql('COMMENT ON COLUMN auth_users.id IS \'(DC2Type:auth_user_id)\'');
+$this->addSql('COMMENT ON COLUMN auth_users.email IS \'(DC2Type:auth_user_email)\'');
+
+----------------------------------------------------
+
+Ожидание работы БД через wait-for-it в Docker
+https://github.com/vishnubob/wait-for-it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
