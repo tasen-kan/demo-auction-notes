@@ -1,0 +1,6 @@
+docker-compose logs
+docker-compose logs api-php-fpm
+docker logs demo-auction-api-php-fpm-1
+
+-f - это follow, т.е. следовать за выводом
+docker-compose logs -f api-php-fpm
